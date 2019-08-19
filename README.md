@@ -1,20 +1,20 @@
 # ItemDataLib
-A simple Spigot librairy to store metadata in ItemStack (1.8+). Supports 1.14's PersistentDataContainer !
+A simple Spigot library to store metadata in ItemStack (1.8+). Supports 1.14's PersistentDataContainer !
 
 ## Description
-ItemDataLib is a Spigot (Java) librairy that store metadata in ItemStack. Data are persistent even after the server restart.
+ItemDataLib is a Spigot (Java) library that store metadata in ItemStack. Data are persistent even after the server restart.
 
 ### How it works
-ItemDataLib use two differents ways to store metadata. The better way will be chose by the librairy itself depending of the server version.
+ItemDataLib use two differents ways to store metadata. The better way will be chose by the library itself depending of the server version.
 
 | Version | Storing Process | Result |
 |--|--|--|
 | 1.14 | Use of 1.14's PersistentDataContainer | Metadata are invisible |
 | 1.8-1.13.2 | Use of the item's lore | A new line in the lore with a label (Default: "&9+Custom Data") ![](http://image.noelshack.com/fichiers/2019/34/1/1566211724-2019-08-14-10-22-41.png)Note: Due to a Minecraft limitation, this method doesn't support big String. For big metadata use a Map and store the key|
 ## Add to project
-This librairy can be added to your buildpath locally using your's IDE (Eclipse: Java Build Path → Depedencies, Intellij IDEA: Project Structure → Librairies)
+This library can be added to your buildpath locally using your's IDE (Eclipse: Java Build Path → Depedencies, Intellij IDEA: Project Structure → Librairies)
 
-You can also use Maven or Gradle to add this librairy.
+You can also use Maven or Gradle to add this library.
 
 [Jitpack](https://jitpack.io/#Iltotore/ItemDataLib) will be used in these examples.
 
@@ -28,7 +28,7 @@ Maven:
 	</repository>
 </repositories>
 ```
-- Depedency:
+- Dependency:
 ```xml
 <dependency>
 	<groupId>com.github.Iltotore</groupId>
@@ -45,14 +45,14 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 ```
-- Depedency
+- Dependency
 ```groovy
 dependencies {
 	implementation 'com.github.Iltotore:ItemDataLib:Tag'
 }
 ```
 ## Usage
-### Step 1: Create new instance of CustomMetaFactory
+### Step 1: Create a new instance of CustomMetaFactory
 The CustomMetaFactory's constructor require a JavaPlugin.
 This is an example in a JavaPlugin's method.
 ```java
@@ -71,9 +71,9 @@ CustomItemMeta customMeta = customMetaFactory.createCustomMeta(meta);
 
 ### Step 3: Usage of CustomItemMeta
 Supported data:
-prmitives, String, UUID
+primitives, String, UUID
 - Reading
-To read metadata of an CustomItemMeta, call theses methods:
+To read metadata of a CustomItemMeta, call these methods:
 
 | Type | Method |
 |--|--|
@@ -82,7 +82,7 @@ To read metadata of an CustomItemMeta, call theses methods:
 | UUID | getUniqueId(String) |
 
 - Editing
-To Edit CustomItemMeta's metadata, use theses methods:
+To Edit CustomItemMeta's metadata, use these methods:
 
 | Type | Method |
 |--|--|
