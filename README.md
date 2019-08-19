@@ -11,10 +11,7 @@ ItemDataLib use two differents ways to store metadata. The better way will be ch
 |--|--|--|
 | 1.14 | Use of 1.14's PersistentDataContainer | Metadata are invisible |
 | 1.8-1.13.2 | Use of the item's lore | A new line in the lore with a label (Default: "&9+Custom Data") ![](http://image.noelshack.com/fichiers/2019/34/1/1566211724-2019-08-14-10-22-41.png)Note: Due to a Minecraft limitation, this method doesn't support big String. For big metadata use a Map and store the key|
-
-
-## Use
-### Add to project
+## Add to project
 This librairy can be added to your buildpath locally using your's IDE (Eclipse: Java Build Path → Depedencies, Intellij IDEA: Project Structure → Librairies)
 
 You can also use Maven or Gradle to add this librairy.
@@ -23,20 +20,75 @@ You can also use Maven or Gradle to add this librairy.
 
 Maven:
 - Repository:
-
-    ```xml
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-```
-- Depedency: 
 ```xml
-	<dependency>
-	    <groupId>com.github.Iltotore</groupId>
-	    <artifactId>ItemDataLib</artifactId>
-	    <version>Tag</version>
-	</dependency>
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
 ```
+- Depedency:
+```xml
+<dependency>
+	<groupId>com.github.Iltotore</groupId>
+	<artifactId>ItemDataLib</artifactId>
+	<version>Tag</version>
+</dependency>
+```
+
+Gradle:
+- Repository
+```groovy
+repositories {
+	...
+	maven { url 'https://jitpack.io' }
+}
+```
+- Depedency
+```groovy
+dependencies {
+	implementation 'com.github.Iltotore:ItemDataLib:Tag'
+}
+```
+## Usage
+### Step 1: Create new instance of CustomMetaFactory
+The CustomMetaFactory's constructor require a JavaPlugin.
+This is an example in a JavaPlugin's method.
+```java
+public void onEnable(){
+	customMetaFactory = new CustomMetaFactory(this);
+}
+```
+### Step 2: Create a new CustomItemMeta
+You need to create a CustomItemMeta to edit/read ItemStack's metadata.
+To create a new CustomItemMeta, use the method CustomMetaFactory#createCustomMeta(ItemMeta) where the parameter is the ItemMeta to edit.
+```java
+ItemStack item = new ItemStack(Material.STONE);
+ItemMeta meta = item.getItemMeta();
+CustomItemMeta customMeta = customMetaFactory.createCustomMeta(meta);
+```
+
+### Step 3: Usage of CustomItemMeta
+Supported data:
+prmitives, String, UUID
+- Reading
+To read metadata of an CustomItemMeta, call theses methods:
+
+| Type | Method |
+|--|--|
+| Primitives | getPrimitiveName(String) |
+| String | getString(String) |
+| UUID | getUniqueId(String) |
+
+- Editing
+To Edit CustomItemMeta's metadata, use theses methods:
+
+| Type | Method |
+|--|--|
+| Primitives | setPrimitiveName(String) |
+| String | setString(String) |
+| UUID | setUniqueId(String) |
+
+Note: **Don't forget to use CustomItemMeta#updateMeta to apply changes !**
+You can reset changes by using CustomItemMeta#updateMap
