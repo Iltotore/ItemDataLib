@@ -77,7 +77,7 @@ To read metadata of a CustomItemMeta, call these methods:
 
 | Type | Method |
 |--|--|
-| Primitives | getPrimitiveName(String) |
+| Primitives | get{PrimitiveName}(String) |
 | String | getString(String) |
 | UUID | getUniqueId(String) |
 
@@ -86,7 +86,7 @@ To Edit CustomItemMeta's metadata, use these methods:
 
 | Type | Method |
 |--|--|
-| Primitives | setPrimitiveName(String) |
+| Primitives | set{PrimitiveName}(String) |
 | String | setString(String) |
 | UUID | setUniqueId(String) |
 
