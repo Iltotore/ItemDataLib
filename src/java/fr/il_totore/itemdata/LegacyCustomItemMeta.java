@@ -1,7 +1,6 @@
 package fr.il_totore.itemdata;
 
 import fr.il_totore.itemdata.util.HiddenStringUtil;
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;

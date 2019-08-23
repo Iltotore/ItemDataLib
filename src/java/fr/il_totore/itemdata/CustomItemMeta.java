@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface CustomItemMeta {
 
-    static final String DEFAULT_LABEL = ChatColor.BLUE + "+Custom Data";
+    String DEFAULT_LABEL = ChatColor.BLUE + "+Custom Data";
 
     void updateMeta(String label);
 

@@ -1,9 +1,6 @@
 package fr.il_totore.itemdata.util;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Server;
-
-import java.util.Comparator;
 
 public class ServerVersion implements Comparable<ServerVersion> {
 

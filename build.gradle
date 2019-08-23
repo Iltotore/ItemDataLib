@@ -1,6 +1,43 @@
 plugins {
     id 'java'
     id 'maven'
+    id 'idea'
 }
 
+sourceCompatibility = 1.8 // java 8
+targetCompatibility = 1.8
 group = 'com.github.Iltotore'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+}
+
+dependencies {
+    compileOnly 'org.bukkit:craftbukkit:1.14.3-R0.1-SNAPSHOT'
+}
+
+/*task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}*/

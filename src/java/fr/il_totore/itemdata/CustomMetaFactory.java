@@ -1,10 +1,8 @@
 package fr.il_totore.itemdata;
 
 import fr.il_totore.itemdata.util.ServerVersion;
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import sun.applet.Main;
 
 import java.util.TreeMap;
 import java.util.function.BiFunction;
