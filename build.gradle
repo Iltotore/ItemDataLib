@@ -1,1 +1,3 @@
-apply from: "maven"
+plugins {
+    id 'maven'
+}
