@@ -5,4 +5,3 @@ repositories {
 dependencies {
     implementation 'com.github.jitpack:gradle-simple:1.0'
 }
-Add sources jar. Creating the sources jar makes it easier for others to use your code and contribute.
