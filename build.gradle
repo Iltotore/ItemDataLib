@@ -7,7 +7,6 @@ plugins {
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
 group = 'com.github.Iltotore'
-project.buildDir = '/out/artifacts/gradleBuild'
 
 sourceSets {
     main {
