@@ -19,12 +19,13 @@ sourceSets {
 allprojects {
     repositories {
         jcenter()
-        mavenLocal()
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     }
 }
 
 dependencies {
-    compileOnly 'org.bukkit:craftbukkit:1.14.3-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.14.3-R0.1-SNAPSHOT'
 }
 
 /*task sourcesJar(type: Jar, dependsOn: classes) {

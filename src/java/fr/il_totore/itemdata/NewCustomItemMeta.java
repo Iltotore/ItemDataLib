@@ -1,7 +1,7 @@
 package fr.il_totore.itemdata;
 
+import com.google.common.base.Preconditions;
 import org.bukkit.NamespacedKey;
-import org.bukkit.craftbukkit.libs.jline.internal.Preconditions;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
