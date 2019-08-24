@@ -54,4 +54,6 @@ public interface CustomItemMeta {
     void setBoolean(String key, boolean value);
 
     void setUniqueId(String key, UUID value);
+
+    String getOldLabel();
 }

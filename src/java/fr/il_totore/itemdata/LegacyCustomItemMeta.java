@@ -15,6 +15,7 @@ public class LegacyCustomItemMeta implements CustomItemMeta {
 
     private ItemMeta meta;
     private Map<String, String> map = new HashMap<>();
+    private String label;
 
     protected LegacyCustomItemMeta(ItemMeta meta){
         this.meta = meta;
@@ -38,11 +39,12 @@ public class LegacyCustomItemMeta implements CustomItemMeta {
 
     public void updateMap(){
         map.clear();
-        System.out.println("hasLore" + meta.hasLore());
         for(String line : meta.getLore() == null ? new ArrayList<String>() : meta.getLore()){
             if(!HiddenStringUtil.hasHiddenString(line)) continue;
             if(HiddenStringUtil.extractHiddenString(line).startsWith(SEQUENCE_HEADER)){
-                String extracted = HiddenStringUtil.extractHiddenString(line).substring(SEQUENCE_HEADER.length()).split(SEQUENCE_FOOTER)[0];
+                String[] strings = HiddenStringUtil.extractHiddenString(line).substring(SEQUENCE_HEADER.length()).split(SEQUENCE_FOOTER);
+                String extracted = strings[0];
+                if(strings.length > 1) label = strings[1];
                 for(String string : extracted.split(SEQUENCE_SEPARATOR)){
                     String[] data = string.split(SEQUENCE_EQUALS_KEY);
                     if(data.length < 2) continue;
@@ -135,5 +137,10 @@ public class LegacyCustomItemMeta implements CustomItemMeta {
 
     public void setUniqueId(String key, UUID value){
         map.put(key, value.toString());
+    }
+
+    @Override
+    public String getOldLabel(){
+        return label;
     }
 }

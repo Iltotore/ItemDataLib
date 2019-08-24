@@ -112,4 +112,9 @@ public class NewCustomItemMeta implements CustomItemMeta{
     public void setUniqueId(String key, UUID value){
         setString(key, value.toString());
     }
+
+    @Override
+    public String getOldLabel(){
+        return "UNKNOWN"; //<1.14 Only
+    }
 }
