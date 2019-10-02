@@ -1,8 +1,8 @@
-package fr.il_totore.itemdata.util;
+package com.github.iltotore.itemdata.util;
 
 import org.bukkit.ChatColor;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class HiddenStringUtil {
 
@@ -16,18 +16,20 @@ public class HiddenStringUtil {
     }
 
     public static boolean hasHiddenString(String input) {
-        if (input == null) return false;
-
-        return input.indexOf(SEQUENCE_HEADER) > -1 && input.indexOf(SEQUENCE_FOOTER) > -1;
+        if (input == null) {
+            return false;
+        }
+        return input.contains(SEQUENCE_HEADER) && input.contains(SEQUENCE_FOOTER);
     }
 
     public static String extractHiddenString(String input) {
         return colorsToString(extract(input));
     }
 
-
     public static String replaceHiddenString(String input, String hiddenString) {
-        if (input == null) return null;
+        if (input == null) {
+            return null;
+        }
 
         int start = input.indexOf(SEQUENCE_HEADER);
         int end = input.indexOf(SEQUENCE_FOOTER);
@@ -39,7 +41,7 @@ public class HiddenStringUtil {
         return input.substring(0, start + SEQUENCE_HEADER.length()) + stringToColors(hiddenString) + input.substring(end);
     }
 
-    public static String removeHiddenString(String input){
+    public static String removeHiddenString(String input) {
         return input.replaceAll(SEQUENCE_HEADER + ".*" + SEQUENCE_FOOTER, "");
     }
 
@@ -47,12 +49,16 @@ public class HiddenStringUtil {
      * Internal stuff.
      */
     private static String quote(String input) {
-        if (input == null) return null;
+        if (input == null) {
+            return null;
+        }
         return SEQUENCE_HEADER + input + SEQUENCE_FOOTER;
     }
 
     private static String extract(String input) {
-        if (input == null) return null;
+        if (input == null) {
+            return null;
+        }
 
         int start = input.indexOf(SEQUENCE_HEADER);
         int end = input.indexOf(SEQUENCE_FOOTER);
@@ -65,26 +71,31 @@ public class HiddenStringUtil {
     }
 
     private static String stringToColors(String normal) {
-        if (normal == null) return null;
+        if (normal == null) {
+            return null;
+        }
 
-        byte[] bytes = normal.getBytes(Charset.forName("UTF-8"));
+        byte[] bytes = normal.getBytes(StandardCharsets.UTF_8);
         char[] chars = new char[bytes.length * 4];
 
         for (int i = 0; i < bytes.length; i++) {
             char[] hex = byteToHex(bytes[i]);
-            chars[i * 4] = ChatColor.COLOR_CHAR;
-            chars[i * 4 + 1] = hex[0];
-            chars[i * 4 + 2] = ChatColor.COLOR_CHAR;
-            chars[i * 4 + 3] = hex[1];
+            int index = i * 4;
+            chars[index] = ChatColor.COLOR_CHAR;
+            chars[index + 1] = hex[0];
+            chars[index + 2] = ChatColor.COLOR_CHAR;
+            chars[index + 3] = hex[1];
         }
 
         return new String(chars);
     }
 
     private static String colorsToString(String colors) {
-        if (colors == null) return null;
+        if (colors == null) {
+            return null;
+        }
 
-        colors = colors.toLowerCase().replace("" + ChatColor.COLOR_CHAR, "");
+        colors = colors.toLowerCase().replace(String.valueOf(ChatColor.COLOR_CHAR), "");
 
         if (colors.length() % 2 != 0) {
             colors = colors.substring(0, (colors.length() / 2) * 2);
@@ -97,7 +108,7 @@ public class HiddenStringUtil {
             bytes[i / 2] = hexToByte(chars[i], chars[i + 1]);
         }
 
-        return new String(bytes, Charset.forName("UTF-8"));
+        return new String(bytes, StandardCharsets.UTF_8);
     }
 
     private static int hexToUnsignedInt(char c) {
@@ -105,9 +116,8 @@ public class HiddenStringUtil {
             return c - 48;
         } else if (c >= 'a' && c <= 'f') {
             return c - 87;
-        } else {
-            throw new IllegalArgumentException("Invalid hex char: out of range");
         }
+        throw new IllegalArgumentException("Invalid hex char: out of range");
     }
 
     private static char unsignedIntToHex(int i) {
@@ -115,9 +125,8 @@ public class HiddenStringUtil {
             return (char) (i + 48);
         } else if (i >= 10 && i <= 15) {
             return (char) (i + 87);
-        } else {
-            throw new IllegalArgumentException("Invalid hex int: out of range");
         }
+        throw new IllegalArgumentException("Invalid hex int: out of range");
     }
 
     private static byte hexToByte(char hex1, char hex0) {
@@ -128,5 +137,4 @@ public class HiddenStringUtil {
         int unsignedByte = (int) b - Byte.MIN_VALUE;
         return new char[]{unsignedIntToHex((unsignedByte >> 4) & 0xf), unsignedIntToHex(unsignedByte & 0xf)};
     }
-
 }

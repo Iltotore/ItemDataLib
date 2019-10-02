@@ -1,29 +1,30 @@
-package fr.il_totore.itemdata.util;
+package com.github.iltotore.itemdata.util;
 
 import org.bukkit.Server;
 
+@SuppressWarnings("unused")
 public class ServerVersion implements Comparable<ServerVersion> {
 
     private String nmsVersion;
 
-    public ServerVersion(String nmsVersion){
+    private ServerVersion(String nmsVersion) {
         this.nmsVersion = nmsVersion;
     }
 
-    public String getNMSVersion(){
+    public String getNMSVersion() {
         return nmsVersion;
     }
 
     @Override
-    public int compareTo(ServerVersion o){
-        return doubleValue().compareTo(o.doubleValue());
+    public int compareTo(ServerVersion serverVersion) {
+        return doubleValue().compareTo(serverVersion.doubleValue());
     }
 
-    public Double doubleValue(){
+    private Double doubleValue() {
         return Double.parseDouble(nmsVersion.replaceFirst("_", ".").replace("_R", "").substring(1));
     }
 
-    public static ServerVersion fromServer(Server server){
+    public static ServerVersion fromServer(Server server) {
         return new ServerVersion(server.getClass().getPackage().getName().split("\\.")[3]);
     }
 

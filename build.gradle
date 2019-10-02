@@ -10,7 +10,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat('yy/MM/dd HH:mm:ss')
 String stringDate = dateFormat.format(new Date(System.currentTimeMillis()))
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
-group = 'com.github.Iltotore'
+group = 'com.github.iltotore'
 
 sourceSets {
     main {
