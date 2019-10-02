@@ -7,9 +7,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
 
+// TODO Remove?
 public class CustomMetaFactory {
 
-    private static TreeMap<ServerVersion, BiFunction<CustomMetaFactory, ItemMeta, CustomItemMeta>> functionMap = new TreeMap<>(ServerVersion::compareTo);
+    private static final TreeMap<ServerVersion, BiFunction<CustomMetaFactory, ItemMeta, CustomItemMeta>> functionMap = new TreeMap<>(ServerVersion::compareTo);
 
     static {
         functionMap.put(ServerVersion.v1_8, (metaFactory, meta) -> new LegacyCustomItemMeta(meta));
@@ -19,20 +20,20 @@ public class CustomMetaFactory {
     private JavaPlugin javaPlugin;
     private BiFunction<CustomMetaFactory, ItemMeta, CustomItemMeta> biFunction;
 
-    public CustomMetaFactory(JavaPlugin javaPlugin){
+    public CustomMetaFactory(JavaPlugin javaPlugin) {
         this.javaPlugin = javaPlugin;
         this.biFunction = functionMap.floorEntry(ServerVersion.fromServer(javaPlugin.getServer())).getValue();
     }
 
-    public JavaPlugin getJavaPlugin(){
+    public JavaPlugin getJavaPlugin() {
         return javaPlugin;
     }
 
-    public void setJavaPlugin(JavaPlugin javaPlugin){
+    public void setJavaPlugin(JavaPlugin javaPlugin) {
         this.javaPlugin = javaPlugin;
     }
 
-    public CustomItemMeta createCustomMeta(ItemMeta meta){
+    public CustomItemMeta createCustomMeta(ItemMeta meta) {
         return biFunction.apply(this, meta);
     }
 }
