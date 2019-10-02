@@ -26,12 +26,16 @@ public class LegacyCustomItemMeta implements CustomItemMeta {
         List<String> lore = meta.getLore() == null ? new ArrayList<>() : meta.getLore();
         lore.removeIf(line -> HiddenStringUtil.hasHiddenString(line) && HiddenStringUtil.extractHiddenString(line).startsWith(SEQUENCE_HEADER));
 
-        String data = SEQUENCE_HEADER;
+        StringBuilder dataBuilder = new StringBuilder();
+        dataBuilder.append(SEQUENCE_HEADER);
         for(Map.Entry<String, String> entry : map.entrySet()){
-            data = data + entry.getKey() + SEQUENCE_EQUALS_KEY + entry.getValue() + SEQUENCE_SEPARATOR;
+            dataBuilder.append(entry.getKey())
+                    .append(SEQUENCE_EQUALS_KEY)
+                    .append(entry.getValue())
+                    .append(SEQUENCE_SEPARATOR);
         }
 
-        data = data.substring(0, data.length()-SEQUENCE_SEPARATOR.length()) + SEQUENCE_FOOTER;
+        String data = dataBuilder.toString().substring(0, dataBuilder.length()-SEQUENCE_SEPARATOR.length()) + SEQUENCE_FOOTER;
 
         lore.add(lore.isEmpty() ? 0 : lore.size()-1, HiddenStringUtil.encodeString(data) + label);
         meta.setLore(lore);
