@@ -1,2 +1,11 @@
-.idea
-gradle.properties
+# Ignore useless gradle stuff
+.gradle/
+
+# Ignore useless IntelliJ generated stuff
+.idea/
+*.iml
+
+# Ignore binaries
+build/
+*.jar
+*.class
