@@ -1,6 +1,6 @@
-package fr.il_totore.itemdata;
+package com.github.iltotore.itemdata;
 
-import fr.il_totore.itemdata.util.HiddenStringUtil;
+import com.github.iltotore.itemdata.util.HiddenStringUtil;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;

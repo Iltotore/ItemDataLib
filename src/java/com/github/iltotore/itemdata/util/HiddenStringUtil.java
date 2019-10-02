@@ -1,4 +1,4 @@
-package fr.il_totore.itemdata.util;
+package com.github.iltotore.itemdata.util;
 
 import org.bukkit.ChatColor;
 

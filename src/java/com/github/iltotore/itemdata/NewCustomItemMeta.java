@@ -1,4 +1,4 @@
-package fr.il_totore.itemdata;
+package com.github.iltotore.itemdata;
 
 import com.google.common.base.Preconditions;
 import org.bukkit.NamespacedKey;

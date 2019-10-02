@@ -1,4 +1,4 @@
-package fr.il_totore.itemdata;
+package com.github.iltotore.itemdata;
 
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.meta.ItemMeta;

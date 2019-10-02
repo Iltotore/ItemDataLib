@@ -1,6 +1,6 @@
-package fr.il_totore.itemdata;
+package com.github.iltotore.itemdata;
 
-import fr.il_totore.itemdata.util.ServerVersion;
+import com.github.iltotore.itemdata.util.ServerVersion;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
