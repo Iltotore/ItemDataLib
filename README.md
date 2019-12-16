@@ -9,7 +9,7 @@ ItemDataLib uses two differents ways to store metadata. The better way will be c
 
 | Version | Storing Process | Result |
 |--|--|--|
-| 1.14 | Use of 1.14's PersistentDataContainer | Metadata is invisible |
+| 1.14+ | Use of 1.14's PersistentDataContainer | Metadata is invisible |
 | 1.8-1.13.2 | Use of the item's lore | A new line in the lore with a label (Default: "&9+Custom Data") ![](http://image.noelshack.com/fichiers/2019/34/1/1566211724-2019-08-14-10-22-41.png)Note: Due to a Minecraft limitation, this method doesn't support big String. For big metadata use a Map and store the key|
 ## Add to project
 This library can be added to your buildpath locally using your IDE (Eclipse: Java Build Path → Depedencies, IntelliJ IDEA: Project Structure → Librairies)
